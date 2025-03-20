@@ -1,13 +1,15 @@
-.body  {
-  padding-left: 118px;
-  .addTask   {
+.body {
+  padding: 0 118px;
+
+  .addTask {
     font-weight: 600;
     font-size: 34px;
     margin: 40px 0 52px 0;
   }
   .wrapDropDowns {
+    position: relative;
     width: 688px;
-    height: 40px;
+    height: 44px;
     display: flex;
     justify-content: space-between;
     border: 1px solid #dee2e6;
@@ -16,21 +18,153 @@
       background-color: transparent;
       border: none;
       color: black;
-      
     }
     .dropdown-toggle::after {
       display: none;
     }
 
     .dropdown-toggle:hover {
-      background-color: transparent;  
+      background-color: transparent;
     }
-     
-
+    .dropdown {
+      position: static;
+    }
+    .dropdown-menu {
+      width: 100%;
+      left: 0;
+      transform: translate(0, 0) !important;
+      top: 56px !important;
+      .dropdown-item {
+        padding: 10px 20px;
+        font-size: 14px;
+        font-weight: 400;
+        color: #212529;
+        &:hover {
+          background-color: #f8f9fa;
+        }
+        .checkBox {
+          width: 22px;
+          height: 22px;
+          border: 1.5px solid #212529;
+          cursor: pointer;
+          border-radius: 6px;
+        }
+      }
+      .choose {
+        width: 155px;
+        height: 35px;
+        border-radius: 20px;
+        background-color: #8338ec;
+        padding: auto;
+        border: none;
+        color: #ffffff;
+        font-size: 16px;
+        float: right;
+        margin: 25px 30px 20px 0;
+      }
+    }
+    .selected-options {
+      width: auto;
+      height: 29px;
+      border-radius: 43px;
+      border: 1px solid #ced4da;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+      color: #343a40;
+      margin-top: 25px;
+    }
   }
-  .wrapStatus {
-    padding-top:79px;
-    width: 100%;
-    
+  .statusBar {
+    padding-top: 79px;
+    display: flex;
+    justify-content: space-between;
+
+    .statusName {
+      width: 381px;
+      height: 54px;
+      border-radius: 10px;
+      font-size: 20px;
+      border: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 500;
+      color: #ffffff;
+    }
+    .task {
+      .Card {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        width: 381px;
+        height: 217px;
+        padding: 20px;
+        margin-top: 30px;
+        border-radius: 15px;
+        border: 1px solid;
+        .priority {
+          width: 86px;
+          height: 26px;
+          border-radius: 4px;
+          border: 0.5px solid;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 4px;
+          font-size: 12px;
+          font-weight: 500;
+
+          .icon {
+            width: 16px;
+            height: 18px;
+          }
+        }
+        .shortenedName {
+          width: 88px;
+          height: 24px;
+          border-radius: 15px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: pink;
+          font-size: 12px;
+          color: #ffffff;
+        }
+        .data {
+          font-size: 12px;
+          font-weight: 400;
+          color: #212529;
+        }
+      }
+      .texts {
+        display: flex;
+        flex-direction: column;
+        row-gap: 12px;
+        padding: 0 30.5px;
+        max-width: 320px;
+        margin-top: 28px;
+
+        .Title {
+          font-size: 16px;
+          font-weight: 500;
+          color: #212529;
+        }
+        .Description {
+          font-size: 14px;
+          font-weight: 400;
+          color: #343a40;
+        }
+      }
+      .avatarWrap {
+        margin-top: 28px;
+        .avatar {
+          width: 31px;
+          height: 31px;
+          border-radius: 50%;
+        }
+      }
+    }
   }
 }

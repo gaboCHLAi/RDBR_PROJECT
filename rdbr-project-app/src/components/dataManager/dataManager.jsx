@@ -8,7 +8,7 @@ export const DataProvider = ({ children }) => {
   const [priorities, setPriorities] = useState([]);
   const [employees, setEmployees] = useState([]);
   const [statuses, setStatuses] = useState([]);
-
+  const [tasks, setTasks] = useState([]);
   const fetchData = async () => {
     try {
       const token = "9e71ea83-3bb1-477c-92ab-531f29e21cbf";
@@ -26,6 +26,12 @@ export const DataProvider = ({ children }) => {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
+      const taskRes = await axios.get(
+        "https://momentum.redberryinternship.ge/api/tasks",
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
 
       const statusesRes = await axios.get(
         "https://momentum.redberryinternship.ge/api/statuses",
@@ -38,6 +44,7 @@ export const DataProvider = ({ children }) => {
       setPriorities(prioritiesRes.data);
       setEmployees(employeesRes.data);
       setStatuses(statusesRes.data);
+      setTasks(taskRes.data);
       console.log(statuses);
     } catch (error) {
       console.error("შეცდომა მონაცემების წამოღებისას:", error);
@@ -90,7 +97,7 @@ export const DataProvider = ({ children }) => {
       TaskData.append("status_id", newTaskData.status);
       TaskData.append("priority_id", newTaskData.priority);
       TaskData.append("employee_id", newTaskData.employee);
-      TaskData.append("department_id", newTaskData.department_id);  
+      TaskData.append("department_id", newTaskData.department_id);
 
       const response = await axios.post(
         "https://momentum.redberryinternship.ge/api/tasks",
@@ -117,6 +124,7 @@ export const DataProvider = ({ children }) => {
       statuses,
       addEmployee,
       addTask,
+      tasks,
     };
   }, [departments, priorities, employees, statuses]);
 

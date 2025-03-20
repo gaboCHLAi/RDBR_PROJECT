@@ -358,7 +358,7 @@ function AddTask() {
                 <label htmlFor="priority">პრიორიტეტი*</label>
                 <DropDown
                   name="პრიორიტეტი"
-                  initialName={selectedPriority?.name || " "}
+                  initialName={selectedPriority?.name || ""}
                   options={priorities || []}
                   onSelect={(selectedItem) =>
                     handleSelect("priority", selectedItem)
