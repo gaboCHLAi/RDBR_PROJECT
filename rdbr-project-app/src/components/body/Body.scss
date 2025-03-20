@@ -1,0 +1,36 @@
+.body  {
+  padding-left: 118px;
+  .addTask   {
+    font-weight: 600;
+    font-size: 34px;
+    margin: 40px 0 52px 0;
+  }
+  .wrapDropDowns {
+    width: 688px;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    .dropdown-toggle {
+      background-color: transparent;
+      border: none;
+      color: black;
+      
+    }
+    .dropdown-toggle::after {
+      display: none;
+    }
+
+    .dropdown-toggle:hover {
+      background-color: transparent;  
+    }
+     
+
+  }
+  .wrapStatus {
+    padding-top:79px;
+    width: 100%;
+    
+  }
+}

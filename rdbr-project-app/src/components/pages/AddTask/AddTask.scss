@@ -1,0 +1,110 @@
+.form {
+  margin: 0 118px;
+  padding: 65px 0 0 55px;
+  height: 958px;
+  border: 0.3px solid #ddd2ff;
+  border-radius: 4px;
+  background-color: #fbf9ffa6;
+  div {
+    label {
+      color: #343a40;
+      margin-bottom: 6px;
+    }
+    input {
+      width: 550px;
+      height: 45px;
+      outline: none;
+      padding-left: 14px;
+      color: #0d0f10;
+      border: 1px solid #dee2e6;
+      border-radius: 5px;
+    }
+    h5 {
+      color: #6c757d;
+      font-size: 10px;
+      font-weight: 350;
+      display: inline-block;
+      margin: 0;
+    }
+    .description {
+      margin-top: 55px;
+      textarea {
+        width: 550px;
+        height: 133px;
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+        color: #0d0f10;
+        outline: none;
+        padding: 14px 14px 0 14px;
+        resize: none;
+      }
+    }
+    .dropdown-toggle {
+      width: 259px;
+      height: 45px;
+      background-color: #ffffff;
+      border: 1px solid #ced4da;
+      color: #000;
+      border-radius: 5px;
+    }
+
+    .dropdown-toggle::after {
+      display: none;
+    }
+    .custom-dropdown-menu {
+      width: 259px;
+
+      border-radius: 0 0 5px 5px; 
+      position: absolute;
+      top: -5px !important;
+      border: 1px solid #ced4da;
+      border-top: none;
+    }
+    .dropdown-item {
+      background-color: transparent;
+      border: 1px solid transparent;
+      padding: 2px 12px;
+    }
+
+    .icon {
+      margin-right: 6px;
+    }
+    .rightSide {
+      margin-left: 161px;
+
+      .dropdown-toggle {
+        width: 550px;
+        height: 45px;
+        background-color: #ffffff;
+        border: 1px solid #dee2e6;
+        color: #000;
+        border-radius: 5px;
+
+    }
+    .Arrow{
+        width: 14px;
+        height: 14px;
+    }
+    .dropdown-menu {
+      width: 550px;
+    }
+      input {
+        width: 318px;
+        height: 45px;
+        padding-left: 36px;
+      }
+      
+     
+      .AddEmployee{
+        width: 208px;
+        height: 42px;
+        border-radius: 5px;
+        background-color: #8338EC;
+        color: #FFFFFF;
+        font-size: 18px;
+        border: none;
+        margin: 145px 0 0 340px;
+      }
+    }
+  }
+}

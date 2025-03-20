@@ -1,0 +1,29 @@
+main {
+  
+  .navBar {
+    width: 100%;
+    height: 100px;
+    .wrapButton {
+      display: flex;
+      column-gap: 40px;
+      .default{
+        font-size: 16px;
+        width: 225px;
+        height: 40px;
+        background-color: transparent;
+        border-radius: 5px;
+        border: 1px solid #8338ec;
+      }
+      :last-of-type {
+        background-color: #8338ec;
+        font-size: 16px;
+        width: 268px;
+        height: 40px;
+        border-radius: 5px;
+        border: 1px solid #8338ec;
+        color: #ffffff;
+      }
+    }
+  }
+  
+}
