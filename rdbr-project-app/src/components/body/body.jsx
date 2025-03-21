@@ -4,83 +4,67 @@ import "./Body.scss";
 import { MyContext } from "../../components/dataManager/MyContext";
 import PropTypes from "prop-types";
 
-const DropDown = ({ name, options }) => {
-  const [selectedOptions, setSelectedOptions] = useState([]); 
-  const [confirmedOptions, setConfirmedOptions] = useState([]);
+const DropDown = ({ name, options, confirmedOptions, setConfirmedOptions }) => {
+  const [selectedOptions, setSelectedOptions] = useState([]);
 
   const handleCheckboxChange = (optionId) => {
-    setSelectedOptions(
-      (prevSelected) =>
-        prevSelected.includes(optionId)
-          ? prevSelected.filter((id) => id !== optionId)
-          : [...prevSelected, optionId]
+    setSelectedOptions((prevSelected) =>
+      prevSelected.includes(optionId)
+        ? prevSelected.filter((id) => id !== optionId)
+        : [...prevSelected, optionId]
     );
   };
 
   return (
     <div className="d-flex flex-column">
-    <Dropdown className="custom-dropdown">
-      <Dropdown.Toggle>
-        {name} <img src="/assets/icons/Icon.svg" alt="Arrow" />
-      </Dropdown.Toggle>
+      <Dropdown className="custom-dropdown">
+        <Dropdown.Toggle>
+          {name} <img src="/assets/icons/Icon.svg" alt="Arrow" />
+        </Dropdown.Toggle>
 
-      <Dropdown.Menu>
-        {options.map((options) => (
-          <Dropdown.Item 
-          
-            key={options.id}
-            href="#"
+        <Dropdown.Menu>
+          {options.map((options) => (
+            <Dropdown.Item
+              key={options.id}
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                handleCheckboxChange(options.id);
+              }}
+            >
+              <div className="d-flex align-items-center">
+                {" "}
+                <input
+                  type="checkbox"
+                  className="checkBox"
+                  checked={selectedOptions.includes(options.id)}
+                />{" "}
+                {options.name} {options.surname}
+              </div>
+            </Dropdown.Item>
+          ))}
+          <button
+            type="submit"
+            className="choose"
             onClick={(e) => {
-              e.preventDefault(); 
-              e.stopPropagation();  
-              handleCheckboxChange(options.id); 
+              e.preventDefault();
+              e.stopPropagation();
+              setConfirmedOptions(selectedOptions);
+              document.body.click();
             }}
           >
-            <div className="d-flex align-items-center">
-              {" "}
-              <input
-                type="checkbox"
-                className="checkBox"
-                checked={selectedOptions.includes(options.id)}
-              />{" "}
-              {options.name} {options.surname}
-            </div>
-          </Dropdown.Item>
-        ))}
-        <button
-        type="submit"
-        className="choose"
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();  
-            setConfirmedOptions(selectedOptions);
-            document.body.click();
-          }}
-        >
-          {" "}
-          არჩევა
-        </button>
-      </Dropdown.Menu>
-    </Dropdown>
-    {confirmedOptions.length > 0 && (
-        <div className="selected-options">
-          {confirmedOptions.map((id) => {
-            const option = options.find((opt) => opt.id === id);
-            return (
-              <button key={id} className="selected-item">
-                {option.name} {option.surname}  
-              </button>
-            );
-          })}
-        </div>
-      )}
+            {" "}
+            არჩევა
+          </button>
+        </Dropdown.Menu>
+      </Dropdown>
     </div>
-    
   );
 };
 
-const StatusBar = () => {
-  const { departments, priorities, employees, statuses, tasks } =
+const StatusBar = ({ tasks }) => {
+  const { departments, priorities, employees, statuses } =
     useContext(MyContext);
   useEffect(() => {
     console.log(statuses);
@@ -129,7 +113,7 @@ const StatusBar = () => {
   const shortenedName = (depId) => {
     switch (depId) {
       case 1:
-        return "ადმინისტრაცია";
+        return "ადმინიტრაცია";
       case 2:
         return "რესურსები";
       case 3:
@@ -211,19 +195,136 @@ const StatusBar = () => {
 };
 
 function Body() {
-  const { departments, priorities, employees } = useContext(MyContext);
-  console.log(departments, priorities, employees);
+  const { departments, priorities, employees, tasks } = useContext(MyContext);
+
+  const [confirmedDepartments, setConfirmedDepartments] = useState([]);
+  const [confirmedPriorities, setConfirmedPriorities] = useState([]);
+  const [confirmedEmployees, setConfirmedEmployees] = useState([]);
+
+  const removeFilter = (filterType, id) => {
+    switch (filterType) {
+      case "department":
+        setConfirmedDepartments((prev) => prev.filter((depId) => depId !== id));
+        break;
+      case "priority":
+        setConfirmedPriorities((prev) =>
+          prev.filter((prioId) => prioId !== id)
+        );
+        break;
+      case "employee":
+        setConfirmedEmployees((prev) => prev.filter((empId) => empId !== id));
+        break;
+      default:
+        break;
+    }
+  };
+
+  const filteredTasks = tasks.filter((task) => {
+    const matchesDepartment =
+      confirmedDepartments.length === 0 ||
+      confirmedDepartments.includes(task.department.id);
+
+    const matchesPriority =
+      confirmedPriorities.length === 0 ||
+      confirmedPriorities.includes(task.priority.id);
+
+    const matchesEmployee =
+      confirmedEmployees.length === 0 ||
+      confirmedEmployees.includes(task.employee.id);
+
+    return matchesDepartment && matchesPriority && matchesEmployee;
+  });
 
   return (
     <main className="body">
       <p className="addTask">დავალების გვერდი</p>
+
       <div className="wrapDropDowns">
-        <DropDown name="დეპარტამენტი" options={departments} />
-        <DropDown name="პრიორიტეტი" options={priorities} />
-        <DropDown name="თანამშრომელი" options={employees} />
+        <DropDown
+          name="დეპარტამენტი"
+          options={departments}
+          confirmedOptions={confirmedDepartments}
+          setConfirmedOptions={setConfirmedDepartments}
+        />
+        <DropDown
+          name="პრიორიტეტი"
+          options={priorities}
+          confirmedOptions={confirmedPriorities}
+          setConfirmedOptions={setConfirmedPriorities}
+        />
+        <DropDown
+          name="თანამშრომელი"
+          options={employees}
+          confirmedOptions={confirmedEmployees}
+          setConfirmedOptions={setConfirmedEmployees}
+        />
       </div>
+
+      <div className="selected-options-container">
+         
+        {confirmedDepartments.length > 0 && (
+          <div className="selected-options d-flex gap-2">
+            {confirmedDepartments.map((id) => {
+              const option = departments.find((opt) => opt.id === id);
+              return option ? (
+                <div className="d-flex" key={id}>
+                  <button
+                    className="selected-item"
+                    onClick={() => removeFilter("department", id)}
+                  >
+                    {option.name}
+                    <img src="/assets/icons/x (1).svg" alt="remove" />
+                  </button>
+                </div>
+              ) : null;
+            })}
+          </div>
+        )}
+
+        
+        {confirmedPriorities.length > 0 && (
+          <div className="selected-options d-flex gap-2">
+            {confirmedPriorities.map((id) => {
+              const option = priorities.find((opt) => opt.id === id);
+              return option ? (
+                <div className="d-flex" key={id}>
+                  <button
+                    className="selected-item"
+                    onClick={() => removeFilter("priority", id)}
+                  >
+                    {option.name}
+                    <img src="/assets/icons/x (1).svg" alt="remove" />
+                  </button>
+                </div>
+              ) : null;
+            })}
+          </div>
+        )}
+
+       
+        {confirmedEmployees.length > 0 && (
+          
+          <div className="selected-options d-flex gap-2">
+            {confirmedEmployees.map((id) => {
+              const option = employees.find((opt) => opt.id === id);
+              return option ? (
+                <div className="d-flex" key={id}>
+                  <button
+                    className="selected-item"
+                    onClick={() => removeFilter("employee", id)}
+                  >
+                    {option.name} {option.surname}
+                    <img src="/assets/icons/x (1).svg" alt="remove" />
+                  </button>
+                </div>
+              ) : null;
+            })}
+          </div>
+        )}
+      </div>
+
       <div>
-        <StatusBar />
+        <StatusBar tasks={filteredTasks} />
       </div>
     </main>
   );

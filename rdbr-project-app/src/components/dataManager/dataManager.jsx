@@ -11,7 +11,7 @@ export const DataProvider = ({ children }) => {
   const [tasks, setTasks] = useState([]);
   const fetchData = async () => {
     try {
-      const token = "9e71ea83-3bb1-477c-92ab-531f29e21cbf";
+      const token = "9e7b2220-2ce2-4acb-9666-6887b054b0c2";
 
       const departmentsRes = await axios.get(
         "https://momentum.redberryinternship.ge/api/departments"
@@ -60,7 +60,7 @@ export const DataProvider = ({ children }) => {
 
   const addEmployee = async (newEmployeeData) => {
     try {
-      const token = "9e71ea83-3bb1-477c-92ab-531f29e21cbf";
+      const token = "9e7b2220-2ce2-4acb-9666-6887b054b0c2";
 
       const formData = new FormData();
       formData.append("name", newEmployeeData.name);
@@ -88,7 +88,7 @@ export const DataProvider = ({ children }) => {
 
   const addTask = async (newTaskData) => {
     try {
-      const token = "9e71ea83-3bb1-477c-92ab-531f29e21cbf";
+      const token = "9e7b2220-2ce2-4acb-9666-6887b054b0c2";
 
       const TaskData = new FormData();
       TaskData.append("name", newTaskData.name);

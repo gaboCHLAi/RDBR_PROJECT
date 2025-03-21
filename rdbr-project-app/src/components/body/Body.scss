@@ -63,7 +63,12 @@
         margin: 25px 30px 20px 0;
       }
     }
-    .selected-options {
+    
+  }
+  .selected-options-container{
+    display: flex;
+     column-gap: 8px;
+    .selected-item {
       width: auto;
       height: 29px;
       border-radius: 43px;
@@ -74,7 +79,9 @@
       font-size: 14px;
       color: #343a40;
       margin-top: 25px;
-    }
+      background-color: transparent;
+      padding: 6px 10px;
+    } 
   }
   .statusBar {
     padding-top: 79px;
@@ -129,7 +136,7 @@
           justify-content: center;
           align-items: center;
           background-color: pink;
-          font-size: 12px;
+          font-size: 11px;
           color: #ffffff;
         }
         .data {
@@ -142,9 +149,9 @@
         display: flex;
         flex-direction: column;
         row-gap: 12px;
-        padding: 0 30.5px;
+         
         max-width: 320px;
-        margin-top: 28px;
+         
 
         .Title {
           font-size: 16px;
