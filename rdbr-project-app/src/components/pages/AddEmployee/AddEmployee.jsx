@@ -117,7 +117,7 @@ function AddEmployee() {
       <div className="overlay" onClick={handleClose}></div>
       <div className="main-container">
         <button onClick={handleClose} className="turnoff" aria-label="Close">
-          <img src="  Vector (1).svg" alt="Arrow" />
+          <img src="  /RDBR_PROJECT/assets/icons/Vector (1).svg" alt="Arrow" />
         </button>
         <p className="title">თანამშრომლის დამატება</p>
         {error && (
@@ -203,7 +203,7 @@ function AddEmployee() {
                   src={
                     avatar
                       ? URL.createObjectURL(avatar)
-                      : " /RDBR_PROJECT /RDBR_PROJECT/assets/icons/Frame 1000005790.svg"
+                      : " /RDBR_PROJECT/assets/icons/Frame 1000005790.svg"
                   }
                   alt="Avatar"
                   style={{
