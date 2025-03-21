@@ -3,7 +3,8 @@ import Dropdown from "react-bootstrap/Dropdown";
 import "./Body.scss";
 import { MyContext } from "../../components/dataManager/MyContext";
 import PropTypes from "prop-types";
-
+import { useNavigate } from "react-router-dom";
+import TaskInfo from "../pages/TaskInfo/TaskInfo";
 const DropDown = ({ name, options, confirmedOptions, setConfirmedOptions }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
 
@@ -64,6 +65,7 @@ const DropDown = ({ name, options, confirmedOptions, setConfirmedOptions }) => {
 };
 
 const StatusBar = ({ tasks }) => {
+  const navigate = useNavigate();
   const { departments, priorities, employees, statuses } =
     useContext(MyContext);
   useEffect(() => {
@@ -143,9 +145,11 @@ const StatusBar = ({ tasks }) => {
             .filter((task) => task.status.id === status.id)
             .map((task) => (
               <div key={task.id} className="task">
-                <div
-                  className="Card"
+                <button
+                  className="Cards"
                   style={{ borderColor: handleColorPro(status.id) }}
+                  onClick={() => navigate(`/task/${task.id}`)}
+                  
                 >
                   <div className="d-flex justify-content-between">
                     <div className="d-flex gap-1">
@@ -165,15 +169,16 @@ const StatusBar = ({ tasks }) => {
                       </div>
                       <div
                         className="shortenedName"
-                        style={{
-                          backgroundColor: handleColorDep(task.department.id),
-                        }}
+                          style={{
+                            backgroundColor: handleColorDep(task.department.id),
+                          }}
                       >
                         {shortenedName(task.department.id)}
                       </div>
                     </div>
                     <div className="data">{task.due_date.slice(0, 10)}</div>
                   </div>
+                  <div className="d-flex flex-column align-items-lg-start">
                   <div className="texts">
                     <div className="Title">{task.name}</div>
                     <div className="Description">{task.description}</div>
@@ -185,7 +190,8 @@ const StatusBar = ({ tasks }) => {
                       className="avatar"
                     />
                   </div>
-                </div>
+                  </div>
+                </button>
               </div>
             ))}
         </div>

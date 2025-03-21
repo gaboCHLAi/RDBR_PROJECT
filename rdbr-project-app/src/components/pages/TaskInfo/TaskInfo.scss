@@ -1,0 +1,104 @@
+.Main-container {
+  .TaskInfo {
+    margin: 40px 118px 0;
+
+    .pryDep {
+      display: flex;
+      row-gap: 18px;
+
+      .priority {
+        width: 86px;
+        height: 26px;
+        border-radius: 4px;
+        border: 0.5px solid;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+        font-size: 12px;
+        font-weight: 500;
+        
+      }
+      .shortenedName {
+        width: 88px;
+        height: 24px;
+        border-radius: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+         
+        font-size: 11px;
+        color: #ffffff;
+      }
+    }
+
+    h2 {
+      font-weight: 600;
+      font-size: 34px;
+      color: #212529;
+      margin: 12px 0 36px;
+    }
+    h3 {
+      font-weight: 500;
+      font-size: 24px;
+      color: #2a2a2a;
+      margin: 73px 0 28px;
+    }
+    .taskDetails {
+      margin-top: 25px;
+      display: flex;
+      column-gap: 70px;
+      width: auto;
+      height: 41px;
+      .leftSide {
+        display: flex;
+        flex-direction: column;
+        row-gap: 46px;
+      }
+      .rightSide {
+        display: flex;
+        flex-direction: column;
+        row-gap:32px;
+        margin-top: -13px;
+        .custom-toggle {
+          width: 259px;
+          height: 45px;
+          border-radius: 5px;
+          border: 1px solid #ced4da;
+          background-color: transparent;
+          color: #0d0f10;
+          font-size: 14px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+        .custom-toggle::after {
+          display: none !important;
+        }
+      }
+      .dropdown-menu{
+        width: 100%;
+      }
+     
+      .employee {
+        display: flex;
+        align-items: center;
+        column-gap: 6px;
+        .employeeAvatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+          }
+      }
+      h6 {
+        font-weight: 300;
+        color: #474747;
+        font-size: 11px;
+      }
+      span {
+        font-size: 14px;
+        color: #0d0f10;
+      }
+    }
+  }
+}

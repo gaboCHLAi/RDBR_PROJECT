@@ -1,7 +1,7 @@
  
 import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import Root from "./root"; 
+import Root from "./Root"; 
 import "./main.scss";
 import "@fontsource/firago";  
 import "@fontsource/firago/500.css";  

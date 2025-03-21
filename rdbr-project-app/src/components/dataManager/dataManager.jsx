@@ -113,9 +113,43 @@ export const DataProvider = ({ children }) => {
       console.log("  ახალი დავალება დაემატა!", response.data);
       fetchData();
     } catch (error) {
-      console.error("❌ შეცდომა დავალების დამატებისას:", error.response.data);
+      console.error(" შეცდომა დავალების დამატებისას:", error.response.data);
     }
   };
+  const fetchTaskById = async (taskId) => {
+    try {
+      const token = "9e7b2220-2ce2-4acb-9666-6887b054b0c2";
+      const response = await axios.get(
+        `https://momentum.redberryinternship.ge/api/tasks/${taskId}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      return response.data;  
+    } catch (error) {
+      console.error("  შეცდომა დავალების მიღებისას:", error.response?.data);
+      throw error;
+    }
+  };
+  const updateTaskStatus = async (taskId, newStatusId) => {
+    try {
+      const token = "9e7b2220-2ce2-4acb-9666-6887b054b0c2";
+  
+      await axios.put(
+        `https://momentum.redberryinternship.ge/api/tasks/${taskId}`,
+        { status_id: newStatusId },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+  
+      console.log("  დავალების სტატუსი წარმატებით განახლდა!");
+      fetchData();  
+    } catch (error) {
+      console.error("  შეცდომა სტატუსის განახლებისას:", error.response?.data);
+    }
+  };
+  
   const contextValue = useMemo(() => {
     return {
       departments,
@@ -125,6 +159,8 @@ export const DataProvider = ({ children }) => {
       addEmployee,
       addTask,
       tasks,
+      fetchTaskById,
+      updateTaskStatus,
     };
   }, [departments, priorities, employees, statuses]);
 
