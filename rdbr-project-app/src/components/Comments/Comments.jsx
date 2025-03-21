@@ -82,7 +82,7 @@ function Comments({ taskId }) {
               onClick={() => setReplyToCommentId(comment.id)}
             >
               <img
-                src=" \assets\icons\Left 2.svg"
+                src=" /assets/icons/Left 2.svg"
                 alt="#"
                 style={{ margin: "0" }}
               />
