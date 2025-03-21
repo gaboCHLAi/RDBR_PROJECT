@@ -1,14 +1,14 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
 import "./AddEmployee.scss";
- 
+
 import { Dropdown } from "react-bootstrap";
 import { MyContext } from "../../../components/dataManager/MyContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { DataContext } from "../../Header/Header";
-function AddEmployee( ) {
+function AddEmployee() {
   const { departments, addEmployee } = useContext(MyContext);
-  const {setActive } = useContext(DataContext)
+  const { setActive } = useContext(DataContext);
   const [nameValue, setNameValue] = useState("");
   const [lastNameValue, setLastNameValue] = useState("");
   const [avatar, setAvatar] = useState(null);
@@ -64,7 +64,7 @@ function AddEmployee( ) {
 
   const handleDivClick = () => {
     if (fileInputRef.current) {
-      fileInputRef.current.click();  
+      fileInputRef.current.click();
     }
   };
   const handleAvatarChange = (e) => {
@@ -74,12 +74,12 @@ function AddEmployee( ) {
         alert("File size must be under 600KB!");
         return;
       }
-      setAvatar(file);  
+      setAvatar(file);
     }
   };
 
   const handleRemoveAvatar = (e) => {
-    e.stopPropagation();  
+    e.stopPropagation();
     setAvatar(null);
   };
 
@@ -117,7 +117,7 @@ function AddEmployee( ) {
       <div className="overlay" onClick={handleClose}></div>
       <div className="main-container">
         <button onClick={handleClose} className="turnoff" aria-label="Close">
-          <img src="../../../public/assets/icons/Vector (1).svg" alt="Arrow" />
+          <img src=" /assets/icons/Vector (1).svg" alt="Arrow" />
         </button>
         <p className="title">თანამშრომლის დამატება</p>
         {error && (
@@ -192,7 +192,6 @@ function AddEmployee( ) {
           </div>
 
           <div className="wrapImageBlock">
-            
             <span>ავატარი*</span>
             <div className="d-flex flex-column  justify-content-center align-items-center imageBlock  ">
               <div
@@ -204,7 +203,7 @@ function AddEmployee( ) {
                   src={
                     avatar
                       ? URL.createObjectURL(avatar)
-                      : "../../../public/assets/icons/Frame 1000005790.svg"
+                      : " /assets/icons/Frame 1000005790.svg"
                   }
                   alt="Avatar"
                   style={{
@@ -274,7 +273,5 @@ function AddEmployee( ) {
     </div>
   );
 }
-
- 
 
 export default AddEmployee;

@@ -3,8 +3,7 @@ import "./Comments.scss";
 import { MyContext } from "../dataManager/MyContext";
 
 function Comments({ taskId }) {
-  const {   addComment, addReply, fetchComments, user } =
-    useContext(MyContext);
+  const { addComment, addReply, fetchComments, user } = useContext(MyContext);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
   const [newReply, setNewReply] = useState("");
@@ -30,10 +29,10 @@ function Comments({ taskId }) {
 
   const handleAddReply = (commentId) => {
     if (!newReply.trim()) {
-      setReplyToCommentId(null);  
+      setReplyToCommentId(null);
       return;
     }
-  
+
     const newReplyData = {
       text: newReply,
       task_id: taskId,
@@ -41,12 +40,11 @@ function Comments({ taskId }) {
       author_avatar: user?.avatar || "https://default-avatar-url",
       author_nickname: user?.nickname || "Anonymous",
     };
-  
+
     addReply(newReplyData);
     setNewReply("");
     setReplyToCommentId(null);
   };
-  
 
   return (
     <div className="comments-section">
@@ -84,7 +82,7 @@ function Comments({ taskId }) {
               onClick={() => setReplyToCommentId(comment.id)}
             >
               <img
-                src="../../../public/assets/icons/Left 2.svg"
+                src=" /assets/icons/Left 2.svg"
                 alt="#"
                 style={{ margin: "0" }}
               />
@@ -111,7 +109,11 @@ function Comments({ taskId }) {
             {comment.sub_comments?.map((subComment) => (
               <div className="replies" key={subComment.id}>
                 <div className="reply d-flex">
-                  <img src={subComment.author_avatar} alt="avatar"  className="avatar"/>
+                  <img
+                    src={subComment.author_avatar}
+                    alt="avatar"
+                    className="avatar"
+                  />
                   <div>
                     <div className="nickName">{subComment.author_nickname}</div>
                     <p>{subComment.text}</p>

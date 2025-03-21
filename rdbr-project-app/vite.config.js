@@ -1,7 +1,8 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import svgr from 'vite-plugin-svgr';
 
 export default defineConfig({
-  plugins: [react()],
-  base: '/RDBR_PROJECT/', 
+  plugins: [react(), svgr()],
+  base: '/RDBR_PROJECT/',  
 });
