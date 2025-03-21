@@ -117,7 +117,7 @@ function AddEmployee() {
       <div className="overlay" onClick={handleClose}></div>
       <div className="main-container">
         <button onClick={handleClose} className="turnoff" aria-label="Close">
-          <img src=" /assets/icons/Vector (1).svg" alt="Arrow" />
+          <img src="  Vector (1).svg" alt="Arrow" />
         </button>
         <p className="title">თანამშრომლის დამატება</p>
         {error && (
@@ -203,7 +203,7 @@ function AddEmployee() {
                   src={
                     avatar
                       ? URL.createObjectURL(avatar)
-                      : " /assets/icons/Frame 1000005790.svg"
+                      : " /RDBR_PROJECT /RDBR_PROJECT/assets/icons/Frame 1000005790.svg"
                   }
                   alt="Avatar"
                   style={{
@@ -220,7 +220,7 @@ function AddEmployee() {
                     className="delete-button"
                   >
                     <img
-                      src="/assets/icons/Frame 1000006036.svg"
+                      src=" /RDBR_PROJECT/assets/icons/Frame 1000006036.svg"
                       alt="remove-avatar"
                     />
                   </button>
@@ -244,7 +244,7 @@ function AddEmployee() {
               <Dropdown.Toggle variant="secondary">
                 {selectedDepartment}
                 <img
-                  src="/assets/icons/Icon.svg"
+                  src=" /RDBR_PROJECT/assets/icons/Icon.svg"
                   alt="Arrow"
                   className="arrow"
                 />

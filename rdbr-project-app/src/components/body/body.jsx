@@ -16,7 +16,7 @@ const DropDown = ({ name, options, setConfirmedOptions, confirmedOptions }) => {
         : [...prevSelected, optionId]
     );
   };
-  
+
   useEffect(() => {
     setSelectedOptions(confirmedOptions);
   }, [confirmedOptions]);
@@ -29,7 +29,7 @@ const DropDown = ({ name, options, setConfirmedOptions, confirmedOptions }) => {
     <div className="d-flex flex-column">
       <Dropdown className="custom-dropdown">
         <Dropdown.Toggle>
-          {name} <img src="/assets/icons/Icon.svg" alt="Arrow" />
+          {name} <img src=" /RDBR_PROJECT/assets/icons/Icon.svg" alt="Arrow" />
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
@@ -287,7 +287,10 @@ function Body() {
                     onClick={() => removeFilter("department", id)}
                   >
                     {option.name}
-                    <img src="/assets/icons/x (1).svg" alt="remove" />
+                    <img
+                      src=" /RDBR_PROJECT/assets/icons/x (1).svg"
+                      alt="remove"
+                    />
                   </button>
                 </div>
               ) : null;
@@ -306,7 +309,10 @@ function Body() {
                     onClick={() => removeFilter("priority", id)}
                   >
                     {option.name}
-                    <img src="/assets/icons/x (1).svg" alt="remove" />
+                    <img
+                      src=" /RDBR_PROJECT/assets/icons/x (1).svg"
+                      alt="remove"
+                    />
                   </button>
                 </div>
               ) : null;
@@ -325,7 +331,10 @@ function Body() {
                     onClick={() => removeFilter("employee", id)}
                   >
                     {option.name} {option.surname}
-                    <img src="/assets/icons/x (1).svg" alt="remove" />
+                    <img
+                      src=" /RDBR_PROJECT/assets/icons/x (1).svg"
+                      alt="remove"
+                    />
                   </button>
                 </div>
               ) : null;

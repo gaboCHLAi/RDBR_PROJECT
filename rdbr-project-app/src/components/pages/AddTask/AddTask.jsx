@@ -213,8 +213,8 @@ function AddTask() {
                 <img
                   src={
                     isOpen
-                      ? "/assets/icons/arrowDown.svg"
-                      : "/assets/icons/Icon.svg"
+                      ? " /RDBR_PROJECT/assets/icons/arrowDown.svg"
+                      : " /RDBR_PROJECT/assets/icons/Icon.svg"
                   }
                   alt="icon"
                   style={{
@@ -230,7 +230,10 @@ function AddTask() {
             {name === "პასუხისმგებელი თანამშრომელი" && (
               <Dropdown.Item as="button" onClick={() => setActive(true)}>
                 <div className="d-flex align-items-center">
-                  <img src="/assets/icons/Frame 1000006008.svg" alt="plus" />
+                  <img
+                    src=" /RDBR_PROJECT/assets/icons/Frame 1000006008.svg"
+                    alt="plus"
+                  />
                   <p
                     style={{ margin: "0", marginLeft: "8px", color: "#8338EC" }}
                   >

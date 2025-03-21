@@ -121,15 +121,15 @@ function TaskInfo() {
           <div className="taskDetails">
             <div className="leftSide">
               <div className="d-flex column-gap-1 ">
-                <img src="/assets/icons/pie-chart.svg" alt="#" />
+                <img src=" /RDBR_PROJECT/assets/icons/pie-chart.svg" alt="#" />
                 <div>სტატუსი</div>
               </div>
               <div className="d-flex column-gap-1">
-                <img src="/assets/icons/user.svg" alt="usersvg" />
+                <img src=" /RDBR_PROJECT/assets/icons/user.svg" alt="usersvg" />
                 <div>თანამშრომელი</div>
               </div>
               <div className="d-flex column-gap-1">
-                <img src="/assets/icons/calendar.png" alt="#" />
+                <img src=" /RDBR_PROJECT/assets/icons/calendar.png" alt="#" />
                 <div> დავალების ვადა</div>
               </div>
             </div>
@@ -137,7 +137,7 @@ function TaskInfo() {
               <Dropdown>
                 <Dropdown.Toggle className="custom-toggle">
                   {selectedStatus || "აირჩიე სტატუსი"}{" "}
-                  <img src="/assets/icons/Icon.svg" alt="icon" />
+                  <img src=" /RDBR_PROJECT/assets/icons/Icon.svg" alt="icon" />
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
