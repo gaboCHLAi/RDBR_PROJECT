@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext  } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./AddTask.scss";
 import Header from "../../Header/Header";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -213,10 +213,14 @@ function AddTask() {
                 <img
                   src={
                     isOpen
-                      ? "/assets/images/Vector.png"
+                      ? "/assets/icons/arrowDown.svg"
                       : "/assets/icons/Icon.svg"
                   }
                   alt="icon"
+                  style={{
+                    width: isOpen ? "16px" : "",
+                    height: isOpen ? "16px" : "",
+                  }}
                 />
               </div>
             </Dropdown.Toggle>
@@ -418,7 +422,6 @@ function AddTask() {
                 className="AddEmployee"
                 onClick={() => {
                   valueValidation();
-                 
                 }}
                 type="submit"
               >

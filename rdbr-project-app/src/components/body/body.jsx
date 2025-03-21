@@ -5,8 +5,9 @@ import { MyContext } from "../../components/dataManager/MyContext";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import TaskInfo from "../pages/TaskInfo/TaskInfo";
-const DropDown = ({ name, options, confirmedOptions, setConfirmedOptions }) => {
-  const [selectedOptions, setSelectedOptions] = useState([]);
+
+const DropDown = ({ name, options, setConfirmedOptions, confirmedOptions }) => {
+  const [selectedOptions, setSelectedOptions] = useState(confirmedOptions);
 
   const handleCheckboxChange = (optionId) => {
     setSelectedOptions((prevSelected) =>
@@ -14,6 +15,14 @@ const DropDown = ({ name, options, confirmedOptions, setConfirmedOptions }) => {
         ? prevSelected.filter((id) => id !== optionId)
         : [...prevSelected, optionId]
     );
+  };
+  
+  useEffect(() => {
+    setSelectedOptions(confirmedOptions);
+  }, [confirmedOptions]);
+
+  const handleConfirmSelection = () => {
+    setConfirmedOptions(selectedOptions);
   };
 
   return (
@@ -24,38 +33,35 @@ const DropDown = ({ name, options, confirmedOptions, setConfirmedOptions }) => {
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
-          {options.map((options) => (
+          {options.map((option) => (
             <Dropdown.Item
-              key={options.id}
+              key={option.id}
               href="#"
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                handleCheckboxChange(options.id);
+                handleCheckboxChange(option.id);
               }}
             >
               <div className="d-flex align-items-center">
-                {" "}
                 <input
                   type="checkbox"
                   className="checkBox"
-                  checked={selectedOptions.includes(options.id)}
-                />{" "}
-                {options.name} {options.surname}
+                  checked={selectedOptions.includes(option.id)}
+                  onChange={() => {}}
+                />
+                {option.name} {option.surname}
               </div>
             </Dropdown.Item>
           ))}
           <button
-            type="submit"
+            type="button"
             className="choose"
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              setConfirmedOptions(selectedOptions);
+            onClick={() => {
+              handleConfirmSelection();
               document.body.click();
             }}
           >
-            {" "}
             არჩევა
           </button>
         </Dropdown.Menu>
@@ -66,8 +72,7 @@ const DropDown = ({ name, options, confirmedOptions, setConfirmedOptions }) => {
 
 const StatusBar = ({ tasks }) => {
   const navigate = useNavigate();
-  const { departments, priorities, employees, statuses } =
-    useContext(MyContext);
+  const { statuses } = useContext(MyContext);
   useEffect(() => {
     console.log(statuses);
   }, [statuses]);
@@ -149,7 +154,6 @@ const StatusBar = ({ tasks }) => {
                   className="Cards"
                   style={{ borderColor: handleColorPro(status.id) }}
                   onClick={() => navigate(`/task/${task.id}`)}
-                  
                 >
                   <div className="d-flex justify-content-between">
                     <div className="d-flex gap-1">
@@ -169,9 +173,9 @@ const StatusBar = ({ tasks }) => {
                       </div>
                       <div
                         className="shortenedName"
-                          style={{
-                            backgroundColor: handleColorDep(task.department.id),
-                          }}
+                        style={{
+                          backgroundColor: handleColorDep(task.department.id),
+                        }}
                       >
                         {shortenedName(task.department.id)}
                       </div>
@@ -179,17 +183,17 @@ const StatusBar = ({ tasks }) => {
                     <div className="data">{task.due_date.slice(0, 10)}</div>
                   </div>
                   <div className="d-flex flex-column align-items-lg-start">
-                  <div className="texts">
-                    <div className="Title">{task.name}</div>
-                    <div className="Description">{task.description}</div>
-                  </div>
-                  <div className="avatarWrap">
-                    <img
-                      src={task.employee.avatar}
-                      alt="avatar"
-                      className="avatar"
-                    />
-                  </div>
+                    <div className="texts">
+                      <div className="Title">{task.name}</div>
+                      <div className="Description">{task.description}</div>
+                    </div>
+                    <div className="avatarWrap">
+                      <img
+                        src={task.employee.avatar}
+                        alt="avatar"
+                        className="avatar"
+                      />
+                    </div>
                   </div>
                 </button>
               </div>
@@ -219,6 +223,11 @@ function Body() {
         break;
       case "employee":
         setConfirmedEmployees((prev) => prev.filter((empId) => empId !== id));
+        break;
+      case "clear":
+        setConfirmedEmployees([]);
+        setConfirmedPriorities([]);
+        setConfirmedDepartments([]);
         break;
       default:
         break;
@@ -267,7 +276,6 @@ function Body() {
       </div>
 
       <div className="selected-options-container">
-         
         {confirmedDepartments.length > 0 && (
           <div className="selected-options d-flex gap-2">
             {confirmedDepartments.map((id) => {
@@ -287,7 +295,6 @@ function Body() {
           </div>
         )}
 
-        
         {confirmedPriorities.length > 0 && (
           <div className="selected-options d-flex gap-2">
             {confirmedPriorities.map((id) => {
@@ -307,9 +314,7 @@ function Body() {
           </div>
         )}
 
-       
         {confirmedEmployees.length > 0 && (
-          
           <div className="selected-options d-flex gap-2">
             {confirmedEmployees.map((id) => {
               const option = employees.find((opt) => opt.id === id);
@@ -326,6 +331,13 @@ function Body() {
               ) : null;
             })}
           </div>
+        )}
+        {(confirmedEmployees.length > 0 ||
+          confirmedDepartments.length > 0 ||
+          confirmedPriorities.length > 0) && (
+          <button className="clear" onClick={() => removeFilter("clear")}>
+            გასუფთავება
+          </button>
         )}
       </div>
 

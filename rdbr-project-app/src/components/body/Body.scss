@@ -38,6 +38,7 @@
         padding: 10px 20px;
         font-size: 14px;
         font-weight: 400;
+
         color: #212529;
         &:hover {
           background-color: #f8f9fa;
@@ -46,8 +47,30 @@
           width: 22px;
           height: 22px;
           border: 1.5px solid #212529;
+          position: relative;
           cursor: pointer;
           border-radius: 6px;
+          margin-right: 15px;
+          appearance: none;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+
+          &:checked {
+            border: 1.5px solid #8338ec;
+
+            &::after {
+              content: "";
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              width: 12px;
+              height: 12px;
+              background-size: contain;
+              background: url("../../../public/assets/icons/checkmark.svg")
+                no-repeat center center;
+            }
+          }
         }
       }
       .choose {
@@ -63,11 +86,12 @@
         margin: 25px 30px 20px 0;
       }
     }
-    
   }
-  .selected-options-container{
+  .selected-options-container {
     display: flex;
-     column-gap: 8px;
+    column-gap: 8px;
+    margin-top: 25px;
+    align-items: center;
     .selected-item {
       width: auto;
       height: 29px;
@@ -78,10 +102,19 @@
       align-items: center;
       font-size: 14px;
       color: #343a40;
-      margin-top: 25px;
+
       background-color: transparent;
       padding: 6px 10px;
-    } 
+    }
+    .clear {
+      color: #343a40;
+      font-size: 14px;
+      border: none;
+      background-color: transparent;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
   .statusBar {
     padding-top: 79px;
@@ -150,9 +183,8 @@
         display: flex;
         flex-direction: column;
         row-gap: 12px;
-        text-align: start; 
+        text-align: start;
         max-width: 320px;
-         
 
         .Title {
           font-size: 16px;

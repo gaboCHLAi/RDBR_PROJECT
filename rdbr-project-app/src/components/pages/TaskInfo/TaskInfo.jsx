@@ -5,9 +5,8 @@ import { useParams } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import { MyContext } from "../../dataManager/MyContext";
 import { Dropdown, DropdownItem, DropdownToggle } from "react-bootstrap";
+import Comments from "../../Comments/Comments";
 function TaskInfo() {
- 
-  
   const { taskId } = useParams();
   const { statuses, updateTaskStatus } = useContext(MyContext);
   const { fetchTaskById } = useContext(MyContext);
@@ -90,83 +89,92 @@ function TaskInfo() {
   if (loading) return <p>იტვირთება...</p>;
   if (error) return <p>შეცდომა: {error}</p>;
   if (!task) return <p>Task is unavailable</p>;
+
   return (
     <div className="Main-container">
       <Header />
-      <div className="TaskInfo">
-        <div className="pryDep d-flex column-gap-2">
-          <div className="priority" style={{
-                          borderColor: handleColorPryo(task.priority.id),
-                          color: handleColorPryo(task.priority.id),
-                        }}>
-            <img src={task.priority.icon} alt="icon" />
-            {task.priority.name}
-          </div>
-          <div
-            className="shortenedName"
-            style={{
+      <div className="d-flex  justify-content-between ">
+        <div className="TaskInfo">
+          <div className="pryDep d-flex column-gap-2">
+            <div
+              className="priority"
+              style={{
+                borderColor: handleColorPryo(task.priority.id),
+                color: handleColorPryo(task.priority.id),
+              }}
+            >
+              <img src={task.priority.icon} alt="icon" />
+              {task.priority.name}
+            </div>
+            <div
+              className="shortenedName"
+              style={{
                 backgroundColor: handleColorDep(task.department.id),
               }}
-          >
-             {shortenedName(task.department.id)}
-          </div>
-        </div>
-        <h2>{task.name}</h2>
-        <p>{task.description}</p>
-        <h3>დავალების დეტალები</h3>
-        <div className="taskDetails">
-          <div className="leftSide">
-            <div className="d-flex column-gap-1 ">
-              <img src="/assets/icons/pie-chart.svg" alt="#" />
-              <div>სტატუსი</div>
-            </div>
-            <div className="d-flex column-gap-1">
-              <img src="/assets/icons/user.svg" alt="usersvg" />
-              <div>თანამშრომელი</div>
-            </div>
-            <div className="d-flex column-gap-1">
-              <img src="/assets/icons/calendar.png" alt="#" />
-              <div> დავალების ვადა</div>
+            >
+              {shortenedName(task.department.id)}
             </div>
           </div>
-          <div className="rightSide">
-            <Dropdown>
-              <Dropdown.Toggle className="custom-toggle">
-                {selectedStatus || "აირჩიე სტატუსი"}{" "}
-                <img src="/assets/icons/Icon.svg" alt="icon" />
-              </Dropdown.Toggle>
-
-              <Dropdown.Menu>
-                {" "}
-                {statuses.map((option) => (
-                  <Dropdown.Item
-                    key={option.id}
-                    onClick={() => handleStatusChange(option.id)}
-                  >
-                    {option.name}
-                  </Dropdown.Item>
-                ))}
-              </Dropdown.Menu>
-            </Dropdown>
-
-            <div className="employee">
-              <img
-                src={task.employee.avatar}
-                alt="თანამშრომელი"
-                className="employeeAvatar"
-              />
-              <div>
-                <h6> {task.department.name}</h6>
-                <div>
-                  {" "}
-                  <span>
-                    {task.employee.name} {task.employee.surname}
-                  </span>
-                </div>
+          <h2>{task.name}</h2>
+          <p>{task.description}</p>
+          <h3>დავალების დეტალები</h3>
+          <div className="taskDetails">
+            <div className="leftSide">
+              <div className="d-flex column-gap-1 ">
+                <img src="/assets/icons/pie-chart.svg" alt="#" />
+                <div>სტატუსი</div>
+              </div>
+              <div className="d-flex column-gap-1">
+                <img src="/assets/icons/user.svg" alt="usersvg" />
+                <div>თანამშრომელი</div>
+              </div>
+              <div className="d-flex column-gap-1">
+                <img src="/assets/icons/calendar.png" alt="#" />
+                <div> დავალების ვადა</div>
               </div>
             </div>
-            <div>{task.due_date.slice(0, 10)}</div>
+            <div className="rightSide">
+              <Dropdown>
+                <Dropdown.Toggle className="custom-toggle">
+                  {selectedStatus || "აირჩიე სტატუსი"}{" "}
+                  <img src="/assets/icons/Icon.svg" alt="icon" />
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  {" "}
+                  {statuses.map((option) => (
+                    <Dropdown.Item
+                      key={option.id}
+                      onClick={() => handleStatusChange(option.id)}
+                    >
+                      {option.name}
+                    </Dropdown.Item>
+                  ))}
+                </Dropdown.Menu>
+              </Dropdown>
+
+              <div className="employee">
+                <img
+                  src={task.employee.avatar}
+                  alt="თანამშრომელი"
+                  className="employeeAvatar"
+                />
+                <div>
+                  <h6> {task.department.name}</h6>
+                  <div>
+                    {" "}
+                    <span>
+                      {task.employee.name} {task.employee.surname}
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div>{task.due_date.slice(0, 10)}</div>
+            </div>
           </div>
+        </div>
+        <div className="commentsSide">
+          <Comments taskId={task.id} />
         </div>
       </div>
     </div>

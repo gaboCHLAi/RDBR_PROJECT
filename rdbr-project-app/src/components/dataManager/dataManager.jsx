@@ -11,7 +11,7 @@ export const DataProvider = ({ children }) => {
   const [tasks, setTasks] = useState([]);
   const fetchData = async () => {
     try {
-      const token = "9e7b2220-2ce2-4acb-9666-6887b054b0c2";
+      const token = "9e7cba0a-d38d-413a-be99-33f19f247653";
 
       const departmentsRes = await axios.get(
         "https://momentum.redberryinternship.ge/api/departments"
@@ -60,7 +60,7 @@ export const DataProvider = ({ children }) => {
 
   const addEmployee = async (newEmployeeData) => {
     try {
-      const token = "9e7b2220-2ce2-4acb-9666-6887b054b0c2";
+      const token = "9e7cba0a-d38d-413a-be99-33f19f247653";
 
       const formData = new FormData();
       formData.append("name", newEmployeeData.name);
@@ -88,7 +88,7 @@ export const DataProvider = ({ children }) => {
 
   const addTask = async (newTaskData) => {
     try {
-      const token = "9e7b2220-2ce2-4acb-9666-6887b054b0c2";
+      const token = "9e7cba0a-d38d-413a-be99-33f19f247653";
 
       const TaskData = new FormData();
       TaskData.append("name", newTaskData.name);
@@ -118,14 +118,14 @@ export const DataProvider = ({ children }) => {
   };
   const fetchTaskById = async (taskId) => {
     try {
-      const token = "9e7b2220-2ce2-4acb-9666-6887b054b0c2";
+      const token = "9e7cba0a-d38d-413a-be99-33f19f247653";
       const response = await axios.get(
         `https://momentum.redberryinternship.ge/api/tasks/${taskId}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      return response.data;  
+      return response.data;
     } catch (error) {
       console.error("  შეცდომა დავალების მიღებისას:", error.response?.data);
       throw error;
@@ -133,8 +133,8 @@ export const DataProvider = ({ children }) => {
   };
   const updateTaskStatus = async (taskId, newStatusId) => {
     try {
-      const token = "9e7b2220-2ce2-4acb-9666-6887b054b0c2";
-  
+      const token = "9e7cba0a-d38d-413a-be99-33f19f247653";
+
       await axios.put(
         `https://momentum.redberryinternship.ge/api/tasks/${taskId}`,
         { status_id: newStatusId },
@@ -142,14 +142,82 @@ export const DataProvider = ({ children }) => {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-  
+
       console.log("  დავალების სტატუსი წარმატებით განახლდა!");
-      fetchData();  
+      fetchData();
     } catch (error) {
       console.error("  შეცდომა სტატუსის განახლებისას:", error.response?.data);
     }
   };
-  
+  const addComment = async (newCommentData) => {
+    try {
+      const token = "9e7cba0a-d38d-413a-be99-33f19f247653";
+
+      const formData = new FormData();
+      formData.append("text", newCommentData.text);
+      formData.append("task_id", newCommentData.task_id);
+      const response = await axios.post(
+        `https://momentum.redberryinternship.ge/api/tasks/${newCommentData.task_id}/comments`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: "application/json",
+          },
+        }
+      );
+
+      console.log("კომენტარი დაემატა!", response.data);
+      fetchData();  
+    } catch (error) {
+      console.error("შეცდომა კომენტარის დამატებისას:", error.response?.data);
+    }
+  };
+  const addReply = async (newReplyData) => {
+    try {
+      const token = "9e7cba0a-d38d-413a-be99-33f19f247653";
+
+      const formData = new FormData();
+      formData.append("text", newReplyData.text);
+      formData.append("task_id", newReplyData.task_id);
+      formData.append("parent_id", newReplyData.parent_id);  
+      formData.append("author_avatar", newReplyData.author_avatar);
+      formData.append("author_nickname", newReplyData.author_nickname);
+
+      const response = await axios.post(
+        `https://momentum.redberryinternship.ge/api/tasks/${newReplyData.task_id}/comments`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: "application/json",
+          },
+        }
+      );
+
+      console.log("რეფლაი დაემატა!", response.data);
+      fetchData();  
+    } catch (error) {
+      console.error("შეცდომა რეფლაის დამატებისას:", error.response?.data);
+    }
+  };
+  const fetchComments = async (taskId) => {
+    try {
+      const token = "9e7cba0a-d38d-413a-be99-33f19f247653";
+      const response = await axios.get(
+        `https://momentum.redberryinternship.ge/api/tasks/${taskId}/comments`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      console.log("კომენტარები წამოიღო:", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("შეცდომა კომენტარების მიღებისას:", error.response?.data);
+    }
+  };
+
   const contextValue = useMemo(() => {
     return {
       departments,
@@ -161,6 +229,9 @@ export const DataProvider = ({ children }) => {
       tasks,
       fetchTaskById,
       updateTaskStatus,
+      addComment,
+      addReply,
+      fetchComments,
     };
   }, [departments, priorities, employees, statuses]);
 

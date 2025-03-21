@@ -46,6 +46,12 @@
       border: 1px solid #ced4da;
       color: #000;
       border-radius: 5px;
+
+      &:active {
+        background-color: #ffffff !important;
+        border: 1px solid #ced4da !important;
+        outline: none !important;
+      }
     }
 
     .dropdown-toggle::after {
@@ -54,7 +60,7 @@
     .custom-dropdown-menu {
       width: 259px;
 
-      border-radius: 0 0 5px 5px; 
+      border-radius: 0 0 5px 5px;
       position: absolute;
       top: -5px !important;
       border: 1px solid #ced4da;
@@ -79,28 +85,23 @@
         border: 1px solid #dee2e6;
         color: #000;
         border-radius: 5px;
+      }
 
-    }
-    .Arrow{
-        width: 14px;
-        height: 14px;
-    }
-    .dropdown-menu {
-      width: 550px;
-    }
+      .dropdown-menu {
+        width: 550px;
+      }
       input {
         width: 318px;
         height: 45px;
         padding-left: 36px;
       }
-      
-     
-      .AddEmployee{
+
+      .AddEmployee {
         width: 208px;
         height: 42px;
         border-radius: 5px;
-        background-color: #8338EC;
-        color: #FFFFFF;
+        background-color: #8338ec;
+        color: #ffffff;
         font-size: 18px;
         border: none;
         margin: 145px 0 0 340px;
