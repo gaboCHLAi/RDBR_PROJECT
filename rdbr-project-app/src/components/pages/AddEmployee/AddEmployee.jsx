@@ -117,7 +117,7 @@ function AddEmployee() {
       <div className="overlay" onClick={handleClose}></div>
       <div className="main-container">
         <button onClick={handleClose} className="turnoff" aria-label="Close">
-          <img src="   /assets/icons/Vector (1).svg" alt="Arrow" />
+          <img src="  \RDBR_PROJECT\assets\icons\Vector (1).svg" alt="Arrow" />
         </button>
         <p className="title">თანამშრომლის დამატება</p>
         {error && (
@@ -220,7 +220,7 @@ function AddEmployee() {
                     className="delete-button"
                   >
                     <img
-                      src=" /RDBR_PROJECT/assets/icons/Frame 1000006036.svg"
+                      src=" \RDBR_PROJECT\assets\icons\Frame 1000006036.svg"
                       alt="remove-avatar"
                     />
                   </button>
