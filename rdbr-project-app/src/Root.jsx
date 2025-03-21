@@ -10,7 +10,7 @@ function Root() {
     <div>
       <DataProvider>
         <ActiveProvider>
-          <Router>
+          <Router basename="/RDBR_PROJECT">
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/AddTask" element={<AddTask />} />
