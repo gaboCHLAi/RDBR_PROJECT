@@ -117,7 +117,7 @@ function AddEmployee() {
       <div className="overlay" onClick={handleClose}></div>
       <div className="main-container">
         <button onClick={handleClose} className="turnoff" aria-label="Close">
-          <img src=" \RDBR_PROJECT\assets\icons\Vector (1).svg" alt="Arrow" />
+          <img src="\RDBR_PROJECT\assets\icons\Vector (1).svg" alt="Arrow" />
         </button>
         <p className="title">თანამშრომლის დამატება</p>
         {error && (
